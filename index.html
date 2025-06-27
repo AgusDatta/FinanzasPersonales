@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard de Finanzas Personales</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Dashboard de Finanzas Personales</h1>
+    </div>
+  </header>
+
+  <main>
+    <!-- Formulario de ingreso -->
+    <section class="form-section">
+      <h2>Agregar Movimiento</h2>
+      <form id="transaction-form">
+        <input type="text" id="description" placeholder="Descripción" required />
+        <input type="number" id="amount" placeholder="Monto" required />
+        <select id="type">
+          <option value="ingreso">Ingreso</option>
+          <option value="gasto">Gasto</option>
+        </select>
+        <select id="category">
+          <option value="general">General</option>
+          <option value="comida">Comida</option>
+          <option value="transporte">Transporte</option>
+          <option value="servicios">Servicios</option>
+          <option value="educacion">Educación</option>
+          <option value="salud">Salud</option>
+          <option value="otros">Otros</option>
+        </select>
+        <input type="date" id="date" required />
+        <button type="submit">Agregar</button>
+      </form>
+    </section>
+
+    <!-- Filtro por fecha -->
+    <section class="filter-section">
+      <h2>Filtrar por Fecha</h2>
+      <label>Desde: <input type="date" id="filter-start" /></label>
+      <label>Hasta: <input type="date" id="filter-end" /></label>
+      <div class="filter-buttons">
+        <button onclick="applyDateFilter()">Aplicar Filtro</button>
+        <button onclick="clearFilter()">Limpiar Filtro</button>
+        <button onclick="exportToCSV()">Exportar CSV</button>
+        <button onclick="exportAsPNG()">Exportar PNG</button>
+        <button onclick="exportAsPDF()">Exportar PDF</button>
+        <button onclick="exportToJSON()">Exportar JSON</button>
+        <input type="file" id="import-json" accept="application/json" />
+      </div>
+    </section>
+
+    <!-- Contenedor para exportar -->
+    <div id="export-area">
+      <!-- Historial -->
+      <section class="list-section">
+        <h2>Historial</h2>
+        <ul id="transaction-list"></ul>
+      </section>
+
+      <!-- Resumen -->
+      <section class="summary-section">
+        <h2>Resumen</h2>
+        <p>Total: $<span id="total">0</span></p>
+        <p>Ingresos: $<span id="total-income">0</span></p>
+        <p>Gastos: $<span id="total-expense">0</span></p>
+      </section>
+
+      <!-- Gráficos -->
+      <section class="chart-section">
+        <h2>Visualización por Tipo</h2>
+        <canvas id="finance-chart"></canvas>
+      </section>
+
+      <section class="chart-section">
+        <h2>Distribución por Categoría</h2>
+        <canvas id="category-chart"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <div id="modal-container" class="modal-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
