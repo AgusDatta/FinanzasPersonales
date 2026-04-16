@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
+    "skipLibCheck": true,
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "exactOptionalPropertyTypes": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@db/*": ["src/db/*"],
+      "@domain/*": ["src/domain/*"],
+      "@features/*": ["src/features/*"],
+      "@ui/*": ["src/ui/*"],
+      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+    "types": ["vite/client", "vite-plugin-pwa/client"]
+  },
+  "include": ["src", "tests", "vite.config.ts", "vitest.config.ts", "playwright.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}
