@@ -1,0 +1,61 @@
+# Netlify build configuration.
+# Netlify picks this up automatically on every deploy.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+# Deploy previews on every PR
+[context.deploy-preview]
+  command = "npm run build"
+
+# Branch deploys: build anything that isn't main too
+[context.branch-deploy]
+  command = "npm run build"
+
+# ---- Routing ----
+# Hash-based routing is used internally (window.location.hash), but we still
+# return index.html for any unknown path so deep links like /dashboard work.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ---- Headers ----
+# Service worker must never be cached — otherwise users get stuck on an old SW.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/workbox-*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# PWA manifest
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+    Cache-Control = "public, max-age=3600"
+
+# Hashed assets can be cached aggressively (Vite emits content-hashed filenames)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Basic security headers for the whole site
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

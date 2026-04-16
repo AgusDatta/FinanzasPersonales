@@ -31,7 +31,7 @@ Reescritura completa hacia una arquitectura modular y profesional.
 - Tests unitarios (Vitest) de dominio, repos, parsers CSV, analytics.
 - Tests E2E (Playwright) del flujo principal.
 - CI con GitHub Actions (lint + typecheck + test + build + E2E).
-- Deploy automático a GitHub Pages.
+- Deploy automático a Netlify (config versionada en `netlify.toml`).
 
 ### Changed
 - Migración automática de `localStorage` (v1) a IndexedDB. Backup del raw queda guardado por si algo falla.
