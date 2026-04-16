@@ -1,0 +1,73 @@
+{
+  "name": "finanzas-personales",
+  "private": true,
+  "version": "2.0.0-alpha.1",
+  "type": "module",
+  "description": "Dashboard de finanzas personales: multi-cuenta, multi-moneda (ARS/USD), presupuestos, recurrentes, reportes y PWA offline.",
+  "author": "Agustín Datta",
+  "license": "MIT",
+  "homepage": "https://github.com/AgusDatta/FinanzasPersonales#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AgusDatta/FinanzasPersonales.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AgusDatta/FinanzasPersonales/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{ts,css,html}\" \"tests/**/*.{ts}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "prepare": "husky || true"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.7",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "decimal.js": "^10.4.3",
+    "dexie": "^4.0.10",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "@vitest/coverage-v8": "^2.1.8",
+    "axe-playwright": "^2.0.3",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "fake-indexeddb": "^6.0.0",
+    "happy-dom": "^16.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vite-plugin-pwa": "^0.21.1",
+    "vitest": "^2.1.8"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,html,md,json}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
